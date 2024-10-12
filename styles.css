@@ -1,0 +1,480 @@
+/* General Body Styling */
+html, body {
+        height: 100%;
+        width:100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        flex:1;
+    }
+    
+    /* Header Styling */
+    header {
+        background-color: #0D92F4;
+        color: white;
+        padding: 1rem 0;
+    }
+    
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0;
+        padding: 0 1rem;
+    }
+    
+    /* Logo Animation: Fade-in */
+    .logo {
+        flex-grow: 1;
+        animation: fadeIn 2s ease-in-out;
+    }
+    
+    .logo h1 {
+        margin: 0;
+        font-size: 1.8rem;
+        text-align: left;
+    }
+    
+    /* Centered Navigation Links for Movies and Top Movies */
+    .center-links {
+        flex-grow: 2;
+        animation: slideIn 1.5s ease-in-out;
+    }
+    
+    .center-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .center-links ul li {
+        margin: 0 1.5rem;
+    }
+    
+    .center-links ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        position: relative;
+        padding-bottom: 5px;
+    }
+    
+    /* Animated underline */
+    .center-links ul li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        bottom: 0;
+        left: 0;
+        transition: width 0.3s ease;
+    }
+    
+    .center-links ul li a:hover::after {
+        width: 100%;  /* Full width underline on hover */
+    }
+    
+    /* Login and Signup Links on the Right */
+    .auth-links {
+        animation: slideInRight 1.5s ease-in-out;
+    }
+    
+    .auth-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+    
+    .auth-links ul li {
+        margin-left: 1.5rem;
+    }
+    
+    .auth-links ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        position: relative;
+        padding-bottom: 5px;
+    }
+    
+    /* Animated underline for login/signup */
+    .auth-links ul li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        bottom: 0;
+        left: 0;
+        transition: width 0.3s ease;
+    }
+    
+    .auth-links ul li a:hover::after {
+        width: 100%;  /* Full width underline on hover */
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideInRight {
+        from {
+            transform: translateX(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    /* Filter Section Styling */
+    /* Filter Section Styling */
+#filters {
+        margin: 2rem auto;
+        text-align: center;
+        background-color: #ffffff;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+    }
+    
+    #filters h2 {
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        color: #333;
+    }
+    
+    #filters label {
+        font-size: 1.1rem;
+        margin-right: 0.5rem;
+        color: #555;
+    }
+    
+    #filters select {
+        margin: 0 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border: 2px solid #0D92F4;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        color: #333;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+    
+    #filters select:focus {
+        border-color: #333;
+    }
+    
+    /* Button to Apply Filters */
+    #filters button {
+        padding: 0.7rem 1.5rem;
+        margin-top: 1rem;
+        background-color: #0D92F4;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    #filters button:hover {
+        background-color: #0D92F4;
+    }
+    
+    
+    /* Movie Cards Section */
+   /* Movie Cards Section */
+#movieCards {
+        margin: 2rem auto;
+        text-align: center;
+    }
+    
+    .movie-grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    .movieCard p i {
+        color: #0D92F4; /* Change icon color to match your theme */
+    }
+    /* Individual Movie Card Styling */
+/* Movie Card Styling */
+.movieCard {
+        position: relative; /* Required to position the heart inside the card */
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        width: 220px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition */
+        opacity: 0;
+        animation: fadeInUp 0.7s ease forwards; /* Slightly increased the animation duration */
+    }
+    
+    .movieCard:hover {
+        transform: scale(1.05); /* Slightly enlarge on hover for a smooth effect */
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Increase shadow for depth on hover */
+    }
+    
+    /* Image Styling */
+    .movieCard img {
+        width: 100%;
+        height: 320px;
+        border-radius: 8px;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out; /* Smooth transition for the image */
+    }
+    
+    .movieCard img:hover {
+        transform: scale(1.02); /* Slight scaling effect on hover */
+        opacity: 0.7; /* Slight fade effect */
+    }
+    
+    /* Heart Icon Styling */
+/* Heart Icon Styling */
+.heart {
+        position: absolute;
+        bottom: 40px; /* Moved higher inside the image */
+        right: 15px;  /* Adjusted the right position */
+        font-size: 1.8rem;  /* Smaller heart size */
+        color: rgba(232, 230, 230, 0.8); /* Semi-transparent white color */
+        cursor: pointer;
+        transition: color 0.3s ease, transform 0.3s ease;
+        z-index: 2;  /* Ensures it's above the image */
+    }
+    
+    .heart.clicked {
+        color: #ff69b4; /* Bright pink color when clicked */
+        transform: scale(1.2); /* Slight enlargement when clicked */
+    }
+    
+    
+    /* Movie Card Styling (as before) */
+    .movieCard {
+        position: relative;
+        background: white;
+        padding: 1.5rem ;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        width: 220px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        opacity: 0;
+        animation: fadeInUp 0.7s ease forwards;
+    }
+    .movieCard h3 {
+        color: #333;
+        text-align: left; /* Align text to the left */
+    }
+    
+    
+    .movieCard img {
+        width: 100%;
+        height: 320px;
+        border-radius: 8px;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    }
+    
+    .movieCard img:hover {
+        transform: scale(1.02);
+        opacity: 0.9;
+    }
+    
+    .movieCard:hover img {
+        transform: scale(1.05); /* Slight zoom-in effect on image */
+    }
+    
+    /* Animation: fade-in with upward movement */
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    
+    /* Footer Styling */
+    footer {
+        background-color: #0D92F4;
+        color: white;
+        text-align: left;
+        height: 200px;
+        padding-top: 20px;
+        padding-bottom:20px ;
+        margin-top: 0;
+        width: 100%;
+    }
+
+    /* Movie Details Styles */
+.movie-details {
+        margin: 0px;
+        position: relative;
+        padding: 0px;
+        color: white; /* Text color for contrast */
+        
+    }
+    .cast-info{
+        margin: 20px;
+    }
+    .backdrop {
+        height: 600px; /* Set a height for the backdrop */
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        margin: 0px;
+    }
+    
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    }
+    
+    .movie-info {
+        display: flex;
+        padding: 20px;
+    }
+    .details h2 {
+        font-size: 3rem;
+        color: white; /* Ensures the movie title is white */
+    }
+    
+    .details p {
+        color: white; /* If you have any paragraphs, make sure they are white too */
+    }
+    
+    .poster {
+        width: 300px; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 10px; /* Optional: rounded corners */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
+        margin-bottom: 20px; /* Space below the poster */
+    }
+    
+    .details {
+        color: white; /* Change this to white */
+        font-family: cursive;
+        max-width: 600px; /* Max width for details */
+        margin-left: 30px; /* Space on the left */
+    }
+    
+    /* Cast and Additional Info Container */
+.cast-and-info {
+        display: flex; /* Use flexbox for layout */
+        justify-content: space-between; /* Space between cast and info */
+        margin-top: 20px; /* Spacing above */
+    }
+    
+    /* Cast Styles as before */
+    .cast {
+        flex: 1; /* Allow cast section to take available space */
+    }
+    
+    .cast-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px; /* Space between cast members */
+    }
+    
+    /* Additional Info Styles */
+    .additional-info {
+        flex: 1; /* Allow additional info to take available space */
+        margin-left: 20px; /* Space between cast and info */
+    }
+    
+    .info-box {
+        background-color: rgba(255, 255, 255, 0.8); /* Light background with opacity */
+        color: #333; /* Dark text for contrast */
+        padding: 15px; /* Padding for the box */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+    
+    .additional-info h3 {
+        margin-top: 0; /* Remove top margin for consistency */
+        color: black;
+    }
+    
+    /* Cast Member Styles */
+.cast-member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: black; /* Set text color to black for visibility */
+    }
+    
+    .cast-member img {
+        width: 100px; /* Size of the cast images */
+        height: auto;
+        border-radius: 50%; /* Circular images */
+    }
+    .cast h3{
+        color: black;
+    }
+    .cast-member p {
+        margin-top: 5px; /* Space between image and text */
+        text-align: center; /* Center align text */
+        color: black; /* Ensure the text is black */
+    }
+    
+    
+    /* Back Button */
+    .back-button {
+        margin: 20px 20px;
+        padding: 10px 20px;
+        background-color: #0D92F4; /* Button color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .back-button:hover {
+        background-color: #3ea6f0; /* Darker shade on hover */
+    }
+    
+    /* Footer Styles as before */
+    
+    

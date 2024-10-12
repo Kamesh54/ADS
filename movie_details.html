@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Movie Details</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Movie Analysis App</h1>
+            </div>
+            <div class="center-links">
+                <ul>
+                    <li><a href="#"><i class="fas fa-film"></i> Movies</a></li>
+                    <li><a href="#"><i class="fas fa-star"></i> Top Movies</a></li>
+                    
+                </ul>
+            </div>            
+            <div class="auth-links">
+                <ul>
+                        <li><a href="#"><i class="fas fa-user"></i> Login</a></li>
+                        <li><a href="#"><i class="fas fa-user-plus"></i> Signup</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="movie-details">
+            <div class="backdrop" style="background-image: url('https://image.tmdb.org/t/p/w500/yDHYTfA3R0jFYba16jBB1ef8oIt.jpg');">
+                <div class="overlay"></div>
+                        <div class="movie-info">
+                        <img src="https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg" alt="Movie Poster" class="poster">
+                        <div class="details">
+                                <h2>Movie Title</h2>
+                                <p><strong>Release Date:</strong> January 1, 2024</p>
+                                <p><strong>Genres:</strong> <span class="genres">Action, Drama</span></p>
+                                <p><strong>Overview:</strong> This is a brief description of the movie...</p>
+                                <p><strong>Runtime:</strong> 120 minutes</p>
+                                <p><strong>Status:</strong> Released</p>
+                                <p><strong>Spoken Languages:</strong> English</p>
+                                <p><strong>Budget:</strong> $100,000,000</p>
+                                <p><strong>Revenue:</strong> $250,000,000</p>
+                            </div>
+                            
+                        </div>
+            </div>
+            <div class="cast-info">
+                <div class="cast-and-info">
+                        <div class="cast">
+                            <h3>Cast Members</h3>
+                            <div class="cast-list">
+                                <div class="cast-member">
+                                    <img src="https://image.tmdb.org/t/p/w500/algQ1VEno2W9SesoArWcZTeF617.jpg" alt="Actor 1">
+                                    <p>Actor 1 as Role Name</p>
+                                </div>
+                                <div class="cast-member">
+                                    <img src="https://image.tmdb.org/t/p/w500/algQ1VEno2W9SesoArWcZTeF617.jpg" alt="Actor 2">
+                                    <p>Actor 2 as Role Name</p>
+                                </div>
+                                <div class="cast-member">
+                                        <img src="https://image.tmdb.org/t/p/w500/algQ1VEno2W9SesoArWcZTeF617.jpg" alt="Actor 2">
+                                        <p>Actor 2 as Role Name</p>
+                                    </div>
+                                    <div class="cast-member">
+                                        <img src="https://image.tmdb.org/t/p/w500/algQ1VEno2W9SesoArWcZTeF617.jpg" alt="Actor 2">
+                                        <p>Actor 2 as Role Name</p>
+                                    </div>
+                                    <div class="cast-member">
+                                        <img src="https://image.tmdb.org/t/p/w500/algQ1VEno2W9SesoArWcZTeF617.jpg" alt="Actor 2">
+                                        <p>Actor 2 as Role Name</p>
+                                    </div>
+                                <!-- Add more cast members as needed -->
+                            </div>
+                        </div>
+                        <div class="additional-info">
+                            <h3>Additional Information</h3>
+                            <div class="info-box">
+                                <p><strong>Popularity:</strong> 1234</p>
+                                <p><strong>Vote Average:</strong> 8.5</p>
+                                <p><strong>Vote Count:</strong> 200</p>
+                                <p><strong>Status:</strong> Released</p>
+                                <p><strong>Spoken Languages:</strong> English, Spanish</p>
+                                <p><strong>Budget:</strong> $100 million</p>
+                                <p><strong>Revenue:</strong> $300 million</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            
+            
+        </div>
+        <button class="back-button" onclick="window.history.back()">Back</button>
+    </main>
+    
+
+    <footer>
+        <p>&copy; 2024 Movie Analysis App. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to your JS if needed -->
+</body>
+</html>
