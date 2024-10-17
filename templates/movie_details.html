@@ -9,31 +9,573 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>{{ movie.title }} - Movie Details</title>
 </head>
+<style>
+      
+html, body {
+        height: 100%;
+        width:100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        flex:1;
+    }
+    
+      
+    header {
+        background-color: #0D92F4;
+        color: white;
+        padding: 1rem 0;
+    }
+    
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0;
+        padding: 0 1rem;
+    }
+    
+      
+    .logo {
+        flex-grow: 1;
+        animation: fadeIn 2s ease-in-out;
+    }
+    
+    .logo h1 {
+        margin: 0;
+        font-size: 1.8rem;
+        text-align: left;
+    }
+    
+      
+    .center-links {
+        flex-grow: 2;
+        animation: slideIn 1.5s ease-in-out;
+    }
+    
+    .center-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .center-links ul li {
+        margin: 0 1.5rem;
+    }
+    
+    .center-links ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        position: relative;
+        padding-bottom: 5px;
+    }
+    
+      
+    .center-links ul li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        bottom: 0;
+        left: 0;
+        transition: width 0.3s ease;
+    }
+    
+    .center-links ul li a:hover::after {
+        width: 100%;    
+    }
+    
+      
+    .auth-links {
+        animation: slideInRight 1.5s ease-in-out;
+    }
+    
+    .auth-links ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+    
+    .auth-links ul li {
+        margin-left: 1.5rem;
+    }
+    
+    .auth-links ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        position: relative;
+        padding-bottom: 5px;
+    }
+    
+      
+    .auth-links ul li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: white;
+        bottom: 0;
+        left: 0;
+        transition: width 0.3s ease;
+    }
+    
+    .auth-links ul li a:hover::after {
+        width: 100%;    
+    }
+    
+    .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .user-avatar {
+        font-size: 1.5rem;
+        color: #f9f9f9;
+    }
+    
+    .user-profile a {
+        color: #f9f9f9;
+        font-size: 0.9rem;
+        padding-left: 10px;
+    }
+    
+    .user-profile a:hover {
+        text-decoration: underline;
+    }
+      
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideInRight {
+        from {
+            transform: translateX(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+ 
+      
+      
+#filters {
+        margin: 2rem auto;
+        text-align: center;
+        background-color: #ffffff;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+    }
+    
+    #filters h2 {
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        color: #333;
+    }
+    
+    #filters label {
+        font-size: 1.1rem;
+        margin-right: 0.5rem;
+        color: #555;
+    }
+    
+    #filters select {
+        margin: 0 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border: 2px solid #0D92F4;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        color: #333;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+    
+    #filters select:focus {
+        border-color: #333;
+    }
+    
+      
+    #filters button {
+        padding: 0.7rem 1.5rem;
+        margin-top: 1rem;
+        background-color: #0D92F4;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    #filters button:hover {
+        background-color: #0D92F4;
+    }
+    
+    
+      
+     
+#movieCards {
+        margin: 2rem auto;
+        text-align: center;
+    }
+    
+    .movie-grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    .movieCard p i {
+        color: #0D92F4;   
+    }
+      
+  
+.movieCard {
+        position: relative;   
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        width: 220px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;   
+        opacity: 0;
+        animation: fadeInUp 0.7s ease forwards;   
+    }
+    
+    .movieCard:hover {
+        transform: scale(1.05);   
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);   
+    }
+    
+      
+    .movieCard img {
+        width: 100%;
+        height: 320px;
+        border-radius: 8px;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;   
+    }
+    
+    .movieCard img:hover {
+        transform: scale(1.02);   
+        opacity: 0.7;   
+    }
+    
+      
+  
+.heart {
+        position: absolute;
+        bottom: 40px;   
+        right: 15px;    
+        font-size: 1.8rem;    
+        color: rgba(232, 230, 230, 0.8);   
+        cursor: pointer;
+        transition: color 0.3s ease, transform 0.3s ease;
+        z-index: 2;    
+    }
+    
+    .heart.clicked {
+        color: #ff69b4;   
+        transform: scale(1.2);   
+    }
+    
+    
+      
+    .movieCard {
+        position: relative;
+        background: white;
+        padding: 1.5rem ;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        width: 220px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        opacity: 0;
+        animation: fadeInUp 0.7s ease forwards;
+    }
+    .movieCard h3 {
+        color: #333;
+        text-align: left;   
+    }
+    
+    
+    .movieCard img {
+        width: 100%;
+        height: 320px;
+        border-radius: 8px;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    }
+    
+    .movieCard img:hover {
+        transform: scale(1.02);
+        opacity: 0.9;
+    }
+    
+    .movieCard:hover img {
+        transform: scale(1.05);   
+    }
+    
+      
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    
+      
+    footer {
+        background-color: #0D92F4;
+        color: white;
+        text-align: left;
+        height: 200px;
+        padding-top: 20px;
+        padding-bottom:20px ;
+        margin-top: 0;
+        width: 100%;
+    }
+
+      
+.movie-details {
+        margin: 0px;
+        position: relative;
+        padding: 0px;
+        color: white;   
+        
+    }
+    .cast-info{
+        margin: 20px;
+    }
+    .backdrop {
+        height: 800px;   
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        margin: 0px;
+    }
+    
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        
+    }
+    
+    .movie-info {
+        display: flex;
+        padding: 20px;
+    }
+    .details h2 {
+        font-size: 3rem;
+        color: white;   
+    }
+    .details {
+        background-color: rgba(255, 255, 255, 0.1);   
+        backdrop-filter: blur(10px);   
+        padding: 20px;   
+        border-radius: 10px;   
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);   
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;   
+        opacity: 0;   
+        animation: fadeInUp 1s ease forwards;   
+    }
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .details {
+            padding: 15px;
+            backdrop-filter: blur(5px);   
+        }
+    }
+    
+    
+    .details p {
+        color: white;   
+    }
+    
+    .poster {
+        width: 300px;   
+        height: auto;   
+        border-radius: 10px;   
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);   
+        margin-bottom: 20px;   
+    }
+    
+    .details {
+        color: white;   
+        font-family: cursive;
+        max-width: 600px;   
+        margin-left: 30px;   
+    }
+    
+      
+.cast-and-info {
+        display: flex;   
+        justify-content: space-between;   
+        margin-top: 20px;   
+    }
+    
+      
+    .cast {
+        flex: 1;   
+    }
+    
+    .cast-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;   
+    }
+    
+      
+    .additional-info {
+        flex: 1;   
+        margin-left: 20px;   
+    }
+    
+    .info-box {
+        background-color: rgba(255, 255, 255, 0.1);   
+        backdrop-filter: blur(10px);   
+        padding: 20px;
+        border-radius: 10px;
+        color: black;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);   
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;   
+        opacity: 0;   
+        animation: fadeInRight 1s ease forwards;   
+    }
+
+    @keyframes fadeInRight {
+        0% {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    @media (max-width: 768px) {
+        .info-box {
+            padding: 15px;
+            backdrop-filter: blur(5px);   
+        }
+    }
+        
+    
+    .additional-info h3 {
+        margin-top: 0;   
+        color: black;
+    }
+    
+      
+.cast-member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: black;   
+    }
+    
+    .cast-member img {
+        width: 100px;   
+        height: auto;
+        border-radius: 50%;   
+    }
+    .cast h3{
+        color: black;
+    }
+    .cast-member p {
+        margin-top: 5px;   
+        text-align: center;   
+        color: black;   
+    }
+    
+    
+      
+    .back-button {
+        margin: 20px 20px;
+        padding: 10px 20px;
+        background-color: #0D92F4;   
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .back-button:hover {
+        background-color: #3ea6f0;   
+    }
+    
+      
+    
+    
+</style>
 <body>
     <header>
         <div class="header-container">
             <div class="logo">
                 <h1>Movie Analysis App</h1>
             </div>
-            <div class="center-links">
-                <ul>
-                    <li><a href="#"><i class="fas fa-film"></i> Movies</a></li>
-                    <li><a href="#"><i class="fas fa-star"></i> Top Movies</a></li>
-                </ul>
-            </div>
-            <div class="auth-links">
-                <ul>
-                    <li><a href="#"><i class="fas fa-user"></i> Login</a></li>
-                    <li><a href="#"><i class="fas fa-user-plus"></i> Signup</a></li>
-                </ul>
-            </div>
+            
+            
         </div>
     </header>
-
     <main>
         <div class="movie-details">
             <div class="backdrop" style="background-image: url('{{ movie.backdrop_url }}');">
-                <div class="overlay"></div>
+                <div class="overlay">
                 <div class="movie-info">
                     <img src="{{ movie.poster_url }}" alt="Movie Poster" class="poster">
                     <div class="details">
@@ -48,8 +590,9 @@
                         <p><strong>Revenue:</strong> ${{ "{:,.2f}".format(movie.revenue) }}</p>
                     </div>
                 </div>
+                </div>
             </div>
-
+    
             <div class="cast-info">
                 <div class="cast-and-info">
                     <div class="cast">
@@ -76,6 +619,7 @@
         </div>
         <button class="back-button" onclick="window.history.back()">Back</button>
     </main>
+    
 
     <footer>
         <p>&copy; 2024 Movie Analysis App. All rights reserved.</p>

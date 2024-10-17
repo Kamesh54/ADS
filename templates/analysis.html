@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For charts -->
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-3">
+        <h1>Movie Analysis</h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
+            <a class="nav-link" href="{{ url_for('analysis') }}">Analysis</a>
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+    <main class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">Total Revenue by Genre</div>
+                    <div class="card-body">
+                        <canvas id="genreRevenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">Top 10 Actors by Total Revenue</div>
+                    <div class="card-body">
+                        <ul>
+                            {% for actor in top_actors %}
+                                <li>{{ actor._id }}: ${{ actor.totalRevenue | round(2) }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">Average Revenue by Genre</div>
+                    <div class="card-body">
+                        <canvas id="averageRevenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">Return on Investment (ROI)</div>
+                    <div class="card-body">
+                        <ul>
+                            {% for movie in roi_data %}
+                                <li>{{ movie.title }}: ROI = {{ movie.roi | round(2) }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">Number of Movies Released per Year</div>
+                    <div class="card-body">
+                        <ul>
+                            {% for year in movies_per_year %}
+                                <li>{{ year._id.year }}: {{ year.count }} movies</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">Total Revenue by Year</div>
+                    <div class="card-body">
+                        <ul>
+                            {% for year in revenue_per_year %}
+                                <li>{{ year._id.year }}: ${{ year.totalRevenue | round(2) }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Movie Analysis. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Example of populating the charts with data
+        const genreRevenueChart = document.getElementById('genreRevenueChart').getContext('2d');
+        const averageRevenueChart = document.getElementById('averageRevenueChart').getContext('2d');
+    
+        // Use Jinja2 to create properly formatted JSON for JavaScript
+        const genreLabels = [{% for genre in genre_revenue %}'{{ genre._id }}'{% if not loop.last %}, {% endif %}{% endfor %}];
+        const genreData = [{% for genre in genre_revenue %}{{ genre.totalRevenue }}{% if not loop.last %}, {% endif %}{% endfor %}];
+    
+        const averageLabels = [{% for genre in average_genre_revenue %}'{{ genre._id }}'{% if not loop.last %}, {% endif %}{% endfor %}];
+        const averageData = [{% for genre in average_genre_revenue %}{{ genre.averageRevenue }}{% if not loop.last %}, {% endif %}{% endfor %}];
+    
+        // Create a bar chart for Total Revenue by Genre
+        new Chart(genreRevenueChart, {
+            type: 'bar',
+            data: {
+                labels: genreLabels,
+                datasets: [{
+                    label: 'Total Revenue by Genre',
+                    data: genreData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    
+        // Create a pie chart for Average Revenue by Genre
+        new Chart(averageRevenueChart, {
+            type: 'pie',
+            data: {
+                labels: averageLabels,
+                datasets: [{
+                    label: 'Average Revenue by Genre',
+                    data: averageData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+    
+</body>
+</html>
